@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans antialiased;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl;
+  }
+  
+  .glass-dark {
+    @apply bg-gray-900/80 backdrop-blur-lg border border-gray-700/50 shadow-xl;
+  }
+  
+  .gradient-primary {
+    @apply bg-gradient-to-r from-primary-600 via-primary-700 to-accent-600;
+  }
+  
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-accent-500;
+  }
+  
+  .btn-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white font-semibold rounded-xl 
+           hover:from-primary-700 hover:to-primary-800 transform hover:scale-105 transition-all duration-300 
+           shadow-lg hover:shadow-primary-500/50;
+  }
+  
+  .btn-secondary {
+    @apply px-6 py-3 border-2 border-primary-500 text-primary-600 font-semibold rounded-xl 
+           hover:bg-primary-50 transform hover:scale-105 transition-all duration-300;
+  }
+  
+  .btn-accent {
+    @apply px-6 py-3 bg-gradient-to-r from-accent-500 to-accent-600 text-white font-semibold rounded-xl 
+           hover:from-accent-600 hover:to-accent-700 transform hover:scale-105 transition-all duration-300 
+           shadow-lg hover:shadow-accent-500/50;
+  }
+  
+  .card-glass {
+    @apply bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl border border-gray-200/50 
+           dark:border-gray-700/50 shadow-xl hover:shadow-2xl transition-all duration-300;
+  }
+  
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 
+           bg-white dark:bg-gray-800 text-gray-900 dark:text-white 
+           focus:ring-2 focus:ring-primary-500 focus:border-transparent 
+           transition-all duration-200 outline-none;
+  }
+  
+  .section-padding {
+    @apply py-16 md:py-24 px-4 md:px-8;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}

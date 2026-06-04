@@ -1,0 +1,30 @@
+# Render Deployment Configuration
+services:
+  - type: web
+    name: infynest-ai-backend
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn run:app
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: infynest-db
+          property: connectionString
+
+  - type: web
+    name: infynest-ai-frontend
+    env: static
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: ./frontend/build
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+databases:
+  - name: infynest-db
+    plan: free
+    databaseName: infynest_db
