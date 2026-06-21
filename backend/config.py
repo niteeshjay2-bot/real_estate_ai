@@ -39,7 +39,7 @@ class DevelopmentConfig(BaseConfig):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.getenv(
         'DATABASE_URL',
-        'postgresql://postgres:postgres@localhost:5432/infynest_db'
+        'sqlite:///infynest_dev.db'
     )
 
 

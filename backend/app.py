@@ -54,6 +54,13 @@ def create_app(config_name=None):
     upload_folder = app.config.get('UPLOAD_FOLDER', 'uploads')
     os.makedirs(upload_folder, exist_ok=True)
 
+    # Import all models to ensure they are registered with SQLAlchemy
+    import backend.models  # noqa: F401
+
+    # Create all database tables
+    with app.app_context():
+        db.create_all()
+
     # JWT error handlers
     @jwt.expired_token_loader
     def expired_token_callback(jwt_header, jwt_payload):
