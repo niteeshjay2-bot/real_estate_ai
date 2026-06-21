@@ -16,7 +16,10 @@ db = SQLAlchemy()
 migrate = Migrate()
 jwt = JWTManager()
 mail = Mail()
-limiter = Limiter(key_func=get_remote_address)
+limiter = Limiter(
+    key_func=get_remote_address,
+    storage_uri="memory://",  # Use in-memory storage (no Redis needed)
+)
 
 
 def create_app(config_name=None):
@@ -32,7 +35,7 @@ def create_app(config_name=None):
     migrate.init_app(app, db)
     jwt.init_app(app)
     mail.init_app(app)
-    CORS(app, resources={r"/api/*": {"origins": app.config.get('FRONTEND_URL', '*')}})
+    CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True)
     limiter.init_app(app)
 
     # Register blueprints
